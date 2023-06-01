@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+  
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6 mx-auto">
+      <div class="card mb-3">
+        <form action="/process/form" method="POST" class="card-body" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="file" class="form-label">Select an automobile part</label>
+            <input type="file" class="form-control" name="file" id="file" placeholder="image file" aria-describedby="automobilePartHelp">
+            <div id="automobilePartHelp" class="form-text">Please upload only valid data, otherwise you will get wrong predictions.</div>
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-secondary">Upload Automobile Part Image</button>
+          </div>
+        </form>
+      </div>
+      {% if session.last_upload %}
+      <div class="card bg-dark text-white">
+        <img class="card-img" src="{{session.last_upload}}" alt="{{filename}}">
+        <div class="card-img-overlay">
+          <h4 class="card-title">{{filename}}</h4>
+        </div>
+      </div>
+      {% else %}
+      <div class="card bg-dark text-white">
+        <img class="card-img" src="/static/images/sample_auto_parts.webp" alt="Title">
+        <div class="card-img-overlay">
+          <h4 class="card-title text-dark">Your image will be displayed here</h4>
+        </div>
+      </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  
+</script>
+{% endblock %}
+

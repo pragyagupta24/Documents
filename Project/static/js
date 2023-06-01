@@ -1,0 +1,33 @@
+/* Custom JavaScript for the upload page */
+
+// Get the form and input elements
+const form = document.querySelector('.form');
+const input = document.querySelector('.form-input');
+
+// Add an event listener to the form
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // prevent the form from submitting
+
+  // Create a new FormData object and append the file to it
+  const formData = new FormData();
+  formData.append('file', input.files[0]);
+
+  // Send a POST request to the server with the file data
+  fetch('/upload', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      // Display the error message if there is one
+      const errorMessage = document.querySelector('.error-message');
+      errorMessage.textContent = data.error;
+      errorMessage.style.display = 'block';
+    } else {
+      // Redirect to the prediction page if there are no errors
+      window.location.href = '/predict/' + data.filename;
+    }
+  })
+  .catch(error => console.error(error));
+});

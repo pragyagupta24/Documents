@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto my-5">
+            <div class="container-fluid">
+                <div class="row">
+                    {% for image in images %}
+                    <div class="col-md-6">
+                        <div class="card">
+                            <img class="card-img-top" src="/{{image.path}}" alt="">
+                            <div class="card-body">
+                                <!-- actions -->
+                                <div class="d-flex justify-content-between">
+                                    <a href="/{{image.name}}/view" class="btn" download>Download</a>
+                                    <a href="/{{image.name}}/predict" class="btn" download>Predict</a>
+                                    <a href="/{{image.name}}/delete" class="btn">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    
+</script>
+{% endblock %}
+
+
